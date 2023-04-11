@@ -1,24 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-body{
-    background-color: rgb(95, 149, 151);
+
+.cover  {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 
-nav {
+.nav {
     display: flex; /* 1 */
     justify-content: space-between; /* 2 */
     padding: 1rem 2rem; /* 3 */
     background: #cfd8dc; /* 4 */
   }
   
-  nav ul {
+  .nav ul {
     display: flex; /* 5 */
     list-style: none; /* 6 */
   }
   
-  nav li {
+  .nav li {
     padding-left: 1rem; /* 7! */
   }

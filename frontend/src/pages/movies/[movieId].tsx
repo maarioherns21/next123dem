@@ -1,11 +1,27 @@
-
+import MovieDetailItem from "@/components/Movies/MovieDetailItem/MovieDetailItem";
+import useFetch from "@/components/useFetch/useFetch";
+import { useRouter } from "next/router";
 
 
 
 const MovieDetails = () => {
+  const router = useRouter();
+  const movieId = router.query.movieid;
+  const { movies, error } = useFetch();
+  const movie = movies?.find((movie: any) => movie._id === movieId);
 
-    return <> MovieDetails</>
-}
+  if (!movie) return <p>Loading...</p>;
 
 
-export default  MovieDetails
+
+
+  
+  return (
+    <>
+      {error && <p>{error}</p>}
+      <MovieDetailItem movie={movie} />
+    </>
+  );
+};
+
+export default MovieDetails;
