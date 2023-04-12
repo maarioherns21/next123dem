@@ -37,7 +37,6 @@ export const index = async (req, res) => {
   }
 };
 
-
 export const createMovie = async (req, res) => {
   try {
     const { name, body, creator: userId } = req.body;
@@ -68,7 +67,6 @@ export const createMovie = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
 
 
 export const deleteMovie = async (req, res) => {

@@ -9,3 +9,13 @@ export type Movie = {
     image: string;
   };
   
+
+export type User = {
+  user?: any;
+  token?: any;
+  username: string;
+  email: string;
+  password: string;
+  image: any;
+  id?: any
+};

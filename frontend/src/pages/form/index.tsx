@@ -1,14 +1,16 @@
 import { Movie } from "@/components/ModelTS/Model"
 import {  FC, FormEvent, useState } from "react"
 import styles from '@/styles/Form.module.css'
-import { NextRouter, useRouter } from "next/router"
+import { useRouter } from "next/router"
+import { useCookies } from "react-cookie"
 
 
 const FormPage:FC = () => {
-const [data, setData] =useState<Movie>({name:"" , body: "", creator: "mario" , image: ""})
+const [cookies] = useCookies(["user"])
+const [data, setData] =useState<Movie>({name:"" , body: "", creator: cookies.user , image: ""})
 const [error, setError] =useState<null>(null)
 const [isPending, setIsPending] =useState<boolean>(false)
-const router: NextRouter = useRouter()
+const router = useRouter()
 
 const handleSubmit  = async ( e: FormEvent) => {
   e.preventDefault();

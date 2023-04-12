@@ -1,9 +1,16 @@
 import Link from "next/link"
+import { FC } from "react";
+import { useCookies } from "react-cookie";
 
 
 
+const Nav:FC= () => {
+  const [cookies]: any = useCookies(["user"])
+  console.log("cookies:", cookies)
+  console.log("user:", cookies?.user)
+  
 
-const Nav = () => {
+  
   return (
     <nav>
       <ul>
@@ -14,7 +21,7 @@ const Nav = () => {
           <Link href={"/form"}>Form</Link>
         </li>
         <li>
-          <Link href={"/profile"}>Profile</Link>
+      {cookies &&  <Link href={`/profile`}>Profile</Link>}
         </li>
       </ul>
     </nav>
@@ -22,3 +29,4 @@ const Nav = () => {
 };
 
 export default Nav
+
