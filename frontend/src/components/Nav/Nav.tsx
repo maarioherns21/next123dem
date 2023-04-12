@@ -14,7 +14,7 @@ const Nav = () => {
           <Link href={"/form"}>Form</Link>
         </li>
         <li>
-          <Link href={"profile"}>Profile</Link>
+          <Link href={"/profile"}>Profile</Link>
         </li>
       </ul>
     </nav>

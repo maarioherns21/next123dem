@@ -37,6 +37,7 @@ export const index = async (req, res) => {
   }
 };
 
+
 export const createMovie = async (req, res) => {
   try {
     const { name, body, creator: userId } = req.body;
@@ -69,15 +70,23 @@ export const createMovie = async (req, res) => {
 };
 
 
+
 export const deleteMovie = async (req, res) => {
   try {
     const { id } = req.params;
-    
-    //deletes the image from the bucket
-    await s3.send(new DeleteObjectCommand({
+
+    ///----- Delete from AWS bucket
+
+    const movie = await PIC.findById(id);
+
+    await s3.send(
+      new DeleteObjectCommand({
         Bucket: bucket,
-        Key: movie.fileImage
-      }));
+        Key: movie.image,
+      })
+    );
+
+    ///----- Delete from AWS bucket
 
     const data = await PIC.findByIdAndDelete(id);
 

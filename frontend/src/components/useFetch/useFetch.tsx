@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 const  useFetch = () => {
-    const [movies, setMovies] = useState<any>([]);
+    const [movies, setMovies] = useState([]);
     const [error, setError] = useState<null>(null);
     const [loading, setLoading] = useState<boolean>(true);
   
