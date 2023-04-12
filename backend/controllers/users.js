@@ -39,16 +39,25 @@ export const index = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+    
+    const user = await User.findOne({ email });
+   
+    console.log(user)
+   
+    if (!user) return res.status(401).json({ message: "Invalid email or password" });
+  
+    const isMatch = await bcrypt.compare(password, user.password);
 
-    if (!user)
-      return res.status(404).json({ message: "Credentials not valid" });
+    if (!isMatch) return res.status(401).json({ message: "Invalid email or password" });
+    
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.status(200).json(user);
+    res.status(200).json({ token, user: { id: user._id , email: user.email , image: user.image, username: user.username } });
   } catch (error) {
-    console.log(error);
+    console.error(error.message);
 
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: 'Server error' });
   }
 };
 

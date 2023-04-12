@@ -13,9 +13,9 @@ export type Movie = {
 export type User = {
   user?: any;
   token?: any;
-  username: string;
+  username?: any;
   email: string;
   password: string;
-  image: any;
+  image?: any;
   id?: any
 };

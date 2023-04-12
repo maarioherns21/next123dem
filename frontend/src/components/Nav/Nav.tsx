@@ -6,10 +6,8 @@ import { useCookies } from "react-cookie";
 
 const Nav:FC= () => {
   const [cookies]: any = useCookies(["user"])
-  console.log("cookies:", cookies)
-  console.log("user:", cookies?.user)
-  
 
+  
   
   return (
     <nav>
@@ -21,7 +19,13 @@ const Nav:FC= () => {
           <Link href={"/form"}>Form</Link>
         </li>
         <li>
-      {cookies &&  <Link href={`/profile`}>Profile</Link>}
+       <Link href={`/profile`}>Profile</Link>
+        </li>
+        <li>
+        <Link href={"/auth/login"}>Login</Link>
+        </li>
+         <li>
+         <Link href={"/auth/register"}>Register</Link>
         </li>
       </ul>
     </nav>
