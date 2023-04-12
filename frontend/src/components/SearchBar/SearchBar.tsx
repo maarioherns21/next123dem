@@ -40,8 +40,10 @@ const SearchBar: FC<Props> = ({ movies }) => {
         <h3>Search</h3>
         <input onChange={(e) => setInput(e.target.value)} />
       </div>
+   
       <Popup trigger={<button>Search</button>}>
-        {output
+      {output.length > 0 ? (
+      output
         .sort((a: any , b: any ) =>  a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
         .map((movie: any) => (
           <div key={movie._id}>
@@ -54,8 +56,11 @@ const SearchBar: FC<Props> = ({ movies }) => {
               <h2>{movie.name}</h2>
             </Link>
           </div>
-        ))}
-      </Popup>
+        ))
+    ) : (
+      <p>No results found</p>
+    )}
+      </Popup> 
     </>
   );
 };
